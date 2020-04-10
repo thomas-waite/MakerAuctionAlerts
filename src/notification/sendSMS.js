@@ -9,10 +9,10 @@ const receiveNum = process.env.RECEIVE_NUM;
 
 const client = require('twilio')(accountSid, authToken);
 
-function sendSMS(value) {
+function sendSMS(value, messageBody) {
     client.messages
         .create({
-            body: `Dai transfer: ${value}`,
+            body: messageBody,
             from: twilioSendNumber,
             to: receiveNum,
         })
