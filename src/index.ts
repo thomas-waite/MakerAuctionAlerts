@@ -1,21 +1,23 @@
-const dotenv = require('dotenv');
-const fetch = require('node-fetch');
+import * as dotenv from 'dotenv';
+// import fetch from 'node-fetch';
 
-const { bot } = require('./bots/telegramAuctionBot');
-const { sendSMS } = require('./notification/sendSMS');
-const { sendTelegramMessage } = require('./notification/sendTelegramMessage');
-const { detectFlipEthA } = require('./auctionDetection/detectFlipEthA');
+// import { bot } from './bots/telegramAuctionBot';
+import sendSMS from'./notification/sendSMS';
+import sendTelegramMessage from './notification/sendTelegramMessage';
+import detectFlipEthA from './auctionDetection/detectFlipEthA';
 
 dotenv.config();
 
-class AuctionAlerts {
+export default class AuctionAlerts {
+    public config: any;
+
     /**
      * Setup the auction alert service, by setting the network to listen to and the
      * alert/notification services required
      * @param {*} alertService
      * @param {*} network
      */
-    constructor(alertService, network, chatID) {
+    constructor(public alertService: string, public network: string, public chatID: number) {
         this.validateInputs(alertService, network);
         this.config = {
             network,
@@ -24,7 +26,7 @@ class AuctionAlerts {
         };
     }
 
-    async start() {
+    public async start() {
         if (this.config.alertService === 'telegram') {
             await this.runTelegramBot(this.config.chatID);
         }
@@ -34,7 +36,7 @@ class AuctionAlerts {
         }
     }
 
-    validateInputs(alertService, network) {
+    private validateInputs(alertService: string, network: string): void {
         const supportedNetworks = ['mainnet', 'kovan'];
         const supportedAlertServices = ['sms', 'telegram'];
 
@@ -47,14 +49,14 @@ class AuctionAlerts {
         }
     }
 
-    async runTelegramBot(chatID) {
+    private async runTelegramBot(chatID: number): Promise<void> {
         detectFlipEthA(this.network, sendTelegramMessage, chatID)
     }
 
-    async runSMSService() {
+    private async runSMSService(): Promise<void> {
         detectFlipEthA(this.network, sendSMS);
     }
 }
 
-const alerts = new AuctionAlerts('telegram', 'mainnet', 799934445);
+const alerts: AuctionAlerts = new AuctionAlerts('telegram', 'mainnet', 799934445);
 alerts.start()

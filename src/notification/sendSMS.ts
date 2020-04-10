@@ -1,4 +1,4 @@
-const dotenv = require('dotenv');
+import * as dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -9,16 +9,12 @@ const receiveNum = process.env.RECEIVE_NUM;
 
 const client = require('twilio')(accountSid, authToken);
 
-function sendSMS(messageBody) {
+export default function sendSMS(messageBody: string): void {
     client.messages
         .create({
             body: messageBody,
             from: twilioSendNumber,
             to: receiveNum,
         })
-        .then((message) => console.log(message.sid));
-}
-
-module.exports = {
-    sendSMS
+        .then((message: any) => console.log(message.sid));
 }

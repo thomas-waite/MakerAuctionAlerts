@@ -1,12 +1,12 @@
-const dotenv = require('dotenv');
-const TelegramBot = require('node-telegram-bot-api');
+import * as dotenv from 'dotenv';
+import * as TelegramBot from 'node-telegram-bot-api';
 
 dotenv.config();
 const BOT_TOKEN = process.env.BOT_TOKEN;
 
-const bot = new TelegramBot(BOT_TOKEN, { polling: true });
+export const bot: TelegramBot = new TelegramBot(BOT_TOKEN, { polling: true });
 
-let chatId;
+let chatId: number;
 
 bot.onText(/\/start/, (msg) => {
     chatId = msg.chat.id;
@@ -19,12 +19,9 @@ bot.onText(/\/start/, (msg) => {
     Which collateral would you like notifications for?`,
         {
             reply_markup: {
-                keyboard: [['ETH-A'], ['BAT-A']],
+                keyboard: [['ETH-A' as any], ['BAT-A' as any]],
             },
         },
     );
 });
 
-module.exports = {
-    bot
-};
