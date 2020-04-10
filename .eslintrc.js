@@ -2,10 +2,9 @@ module.exports = {
   env: {
     browser: true,
     es6: true,
+    node: true,
   },
-  extends: [
-    'airbnb-base',
-  ],
+  extends: ['standard'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -15,5 +14,13 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'no-console': 'off',
+    indent: [
+      'error',
+      4,
+      {
+        SwitchCase: 1,
+      },
+    ],
   },
 };

@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "./scripts/start.sh"
   },
   "repository": {
     "type": "git",
@@ -17,9 +18,13 @@
   },
   "homepage": "https://github.com/thomas-waite/MakerAuctionAlerts#readme",
   "dependencies": {
+    "bn.js": "^5.1.1",
     "dotenv": "^8.2.0",
+    "ethers": "^4.0.46",
     "prettier": "^2.0.4",
-    "twilio": "^3.42.1"
+    "twilio": "^3.42.1",
+    "web3-eth-abi": "^1.2.6",
+    "web3-utils": "^1.2.6"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
