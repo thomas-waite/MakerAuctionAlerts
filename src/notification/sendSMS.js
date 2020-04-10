@@ -9,7 +9,7 @@ const receiveNum = process.env.RECEIVE_NUM;
 
 const client = require('twilio')(accountSid, authToken);
 
-function sendSMS(value, messageBody) {
+function sendSMS(messageBody) {
     client.messages
         .create({
             body: messageBody,

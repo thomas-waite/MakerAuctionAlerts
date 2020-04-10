@@ -8,7 +8,7 @@ const bot = new TelegramBot(BOT_TOKEN, { polling: true });
 
 let chatId;
 
-bot.onText(/\start/, (msg) => {
+bot.onText(/\/start/, (msg) => {
     chatId = msg.chat.id;
     console.log({ chatId });
     bot.sendMessage(
@@ -25,8 +25,6 @@ bot.onText(/\start/, (msg) => {
     );
 });
 
-
 module.exports = {
-    bot,
-    chatId,
+    bot
 };
