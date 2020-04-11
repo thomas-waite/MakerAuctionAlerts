@@ -10,4 +10,14 @@ Communication channels currently supported are: SMS messaging, Telegram chat.
 1. Clone the repo
 2. Run `yarn install`
 3. Rename `.env.example` to `.env` and fill in the various variables
-4. Run `bash src/start.sh -a ${alertService} -c ${network} -t ${telegramBotChatID}`. Run `bash src/start.sh -h` to get descriptions of these required arguments and acceptable values
+4. Run:
+
+1) To get an idea of the required arguments and flags:
+```
+bash start.sh -h
+```
+
+2) To start the auction alert service:
+```
+bash start.sh -a ${alertService} -c ${network} -t ${telegramBotChatID}
+```

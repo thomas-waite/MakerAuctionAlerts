@@ -3,10 +3,6 @@
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "test",
-    "start": "./scripts/start.sh"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thomas-waite/MakerAuctionAlerts.git"

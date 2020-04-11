@@ -1,7 +1,4 @@
 import * as dotenv from 'dotenv';
-// import fetch from 'node-fetch';
-
-// import { bot } from './bots/telegramAuctionBot';
 import sendSMS from'./notification/sendSMS';
 import sendTelegramMessage from './notification/sendTelegramMessage';
 import detectFlipEthA from './auctionDetection/detectFlipEthA';
