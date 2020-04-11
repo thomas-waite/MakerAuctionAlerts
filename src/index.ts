@@ -7,6 +7,7 @@ import sendTelegramMessage from './notification/sendTelegramMessage';
 import detectFlipEthA from './auctionDetection/detectFlipEthA';
 
 dotenv.config();
+const [alertServiceArg, networkArg, chatIdArg] = process.argv.slice(2);
 
 export default class AuctionAlerts {
     public config: any;
@@ -17,12 +18,12 @@ export default class AuctionAlerts {
      * @param {*} alertService
      * @param {*} network
      */
-    constructor(public alertService: string, public network: string, public chatID: number) {
+    constructor(public alertService: string, public network: string, public chatID: string) {
         this.validateInputs(alertService, network);
         this.config = {
             network,
             alertService,
-            chatID
+            chatID: parseInt(chatID)
         };
     }
 
@@ -58,5 +59,5 @@ export default class AuctionAlerts {
     }
 }
 
-const alerts: AuctionAlerts = new AuctionAlerts('telegram', 'mainnet', 799934445);
+const alerts: AuctionAlerts = new AuctionAlerts(alertServiceArg, networkArg, chatIdArg);
 alerts.start()
